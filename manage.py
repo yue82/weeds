@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
-from weeds import app
+from __future__ import print_function
+from flask.ext.script import Manager
+from weeds import app, db
 
-app.run(host='127.0.0.1', port=5000, debug=True)
+manager = Manager(app)
+
+@manager.command
+def init_db():
+    db.create_all()
+
+if __name__ == '__main__':
+    manager.run()
