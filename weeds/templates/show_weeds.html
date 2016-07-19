@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="{{ url_for('add_record') }}" method=post class=add-record>
+    <dl>
+      <dt>Date:
+        <dd>Year:<input type=text size=8 name=year>
+          Month:<input type=text size=8 name=month>
+          Day:<input type=text size=8 name=day>
+      <dt>Time Length:
+      <dd><input type=text size=20 name=tlen>
+      <dd><input type=submit value=Submit>
+    </dl>
+  </form>
+
+  <ul class=weeds>
+  {% for record in records %}
+    <li><h2>{{ record.date }}</h2>{{ record.tlen|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No records here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
